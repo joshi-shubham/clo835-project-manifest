@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: employees
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      # nodePort: 32090
+  type: LoadBalancer
