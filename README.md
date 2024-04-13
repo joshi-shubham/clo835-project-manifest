@@ -55,6 +55,15 @@ kubectl apply -f Deployment-app.yaml -n final
 ```
 
 ### 6. HPA testing
+Deploy the metric server to run healt checks
+```bash
+k apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.7.1/components.yaml
+```
+Verify the metric server status
+```bash
+k get apiservice v1beta1.metrics.k8s.io -o json | jq '.status'
+```
+
 Deploy the Horizontal pod scaling manifest and run the busy box
 ```bash
 k apply -f hpa.yaml
