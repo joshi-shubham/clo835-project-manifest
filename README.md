@@ -9,7 +9,7 @@
 |configMap-app.yaml|configmap manifest for s3 bucket and image name information |
 |service-db.yaml| Cluster service manifest for database access from port 3306 |
 |service-app.yaml| Loadbalancer servcie manifest for application access over the internet |
-|mysql-pvc.yaml| Persitent Volume manifest provisioned with default provisioner |
+|mysql-pvc.yaml| Persitent Volume claim manifest provisioned with default provisioner |
 |Deployment-db.yaml |mysql deployment manifest|
 |Deployment-app.yaml|flask app deployment manifest|
 |hpa.yaml |horizontal pod scaling manifest|
