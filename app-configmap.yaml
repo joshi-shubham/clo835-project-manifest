@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  DBHOST: "mysql-service"
+  DBPORT: "3306"
+  DATABASE: "employees"
+  APP_COLOR: "blue"
