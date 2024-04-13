@@ -16,15 +16,12 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: 876560225863.dkr.ecr.us-east-1.amazonaws.com/mysql:my_DB_latest
-          env:
-          - name: MYSQL_ROOT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: app-secret
-                key: MYSQL_ROOT_PASSWORD
+          image: 759386766154.dkr.ecr.us-east-1.amazonaws.com/mysql:v0.1
           ports:
-          - containerPort: 3306
+            - containerPort: 3306
+          envFrom:
+            - secretRef:
+                name: mysql-secret
           volumeMounts:
           - mountPath: /var/lib/mysql
             name: mysql-data
