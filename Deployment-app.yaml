@@ -6,7 +6,7 @@ metadata:
   labels:
     app: employees
 spec:
-  replicas: 4
+  replicas: 1
   selector:
     matchLabels:
       app: employees
@@ -19,7 +19,7 @@ spec:
         - name: webapp
           image: 759386766154.dkr.ecr.us-east-1.amazonaws.com/project:v0.5
           ports:
-            - containerPort: 8080
+            - containerPort: 81
           resources:
            requests:
             cpu: 200m
