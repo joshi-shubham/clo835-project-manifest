@@ -1,7 +1,7 @@
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
- namespace: application 
+ namespace: final 
  name: webapp-deployment
 spec:
  scaleTargetRef:

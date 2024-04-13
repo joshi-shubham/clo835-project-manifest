@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: my-configmap
-  namespace: application
+  namespace: final
 data:
   BUCKET: sjoshi73-clo835
   APP_IMAGE: arch.png
