@@ -5,7 +5,7 @@ metadata:
   labels:
     app: employees
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: employees
@@ -16,17 +16,20 @@ spec:
     spec:
       containers:
         - name: webapp
-          image: 976199020745.dkr.ecr.us-east-1.amazonaws.com/clo835_project:my_app_latest
-          ports:
-            - containerPort: 8080
+          image: 876560225863.dkr.ecr.us-east-1.amazonaws.com/mysql:my_APP_latest
+          envFrom:
+          - configMapRef:
+              name: app-config
           env:
-            - name: DBHOST
-              value: "mysql-service"
-            - name: DBPORT
-              value: "3306"
-            - name: DATABASE
-              value: "employees"
-            - name: DBPWD
-              value: "password"
-            - name: DBUSER
-              value: "root"
+          - name: DBPWD
+            valueFrom:
+              secretKeyRef:
+                name: app-secret
+                key: DBPWD
+          - name: DBUSER
+            valueFrom:
+              secretKeyRef:
+                name: app-secret
+                key: DBUSER
+          ports:
+          - containerPort: 8080
