@@ -16,17 +16,12 @@ spec:
     spec:
       containers:
         - name: webapp
-          image: 759386766154.dkr.ecr.us-east-1.amazonaws.com/project:v0.2
+          image: 759386766154.dkr.ecr.us-east-1.amazonaws.com/project:v0.3
           ports:
             - containerPort: 8080
-          env:
-            - name: DBHOST
-              value: "mysql-service"
-            - name: DBPORT
-              value: "3306"
-            - name: DATABASE
-              value: "employees"
-            - name: DBPWD
-              value: "password"
-            - name: DBUSER
-              value: "root"
+          envFrom:
+            - secretRef:
+                name: employees-secret
+            - configMapRef:
+                name: my-configmap
+            
