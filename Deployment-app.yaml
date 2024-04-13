@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: webapp-deployment
+  namespace: application 
   labels:
     app: employees
 spec:
@@ -16,23 +17,15 @@ spec:
     spec:
       containers:
         - name: webapp
-          image: 876560225863.dkr.ecr.us-east-1.amazonaws.com/mysql:my_APP_latest
-          envFrom:
-          - configMapRef:
-              name: app-config
-          env:
-          - name: DBPWD
-            valueFrom:
-              secretKeyRef:
-                name: app-secret
-                key: DBPWD
-          - name: DBUSER
-            valueFrom:
-              secretKeyRef:
-                name: app-secret
-                key: DBUSER
+          image: 759386766154.dkr.ecr.us-east-1.amazonaws.com/project:v0.5
           ports:
-          - containerPort: 8080
+            - containerPort: 8080
           resources:
            requests:
             cpu: 200m
+          envFrom:
+            - secretRef:
+                name: employees-secret
+            - configMapRef:
+                name: my-configmap
+            
