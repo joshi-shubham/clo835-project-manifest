@@ -33,3 +33,6 @@ spec:
                 key: DBUSER
           ports:
           - containerPort: 8080
+          resources:
+           requests:
+            cpu: 200m
