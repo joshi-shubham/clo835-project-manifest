@@ -26,8 +26,8 @@
 `eksctl create cluster -f eks_config.yaml`
 
 ### 2. Install the ebs-csi-driver to provision ebs for persistent volumes 
-
-`eksctl create addon --name aws-ebs-csi-driver --cluster clo835 --service-account-role-arn arn:aws:iam::876560225863:role/LabRole --force`
+_87656022586_ should be updated with the relevent userid
+`eksctl create addon --name aws-ebs-csi-driver --cluster clo835 --service-account-role-arn arn:aws:iam::<_87656022586_>:role/LabRole --force`
 
 ### 3. Create the new namespace 
 
