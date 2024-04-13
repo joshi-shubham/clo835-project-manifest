@@ -23,21 +23,29 @@
 
 ### 1. Create an two node eks cluster
 
-`eksctl create cluster -f eks_config.yaml`
+```bash
+eksctl create cluster -f eks_config.yaml
+```
 
 ### 2. Install the ebs-csi-driver to provision ebs for persistent volumes 
-_87656022586_ should be updated with the relevent userid
-`eksctl create addon --name aws-ebs-csi-driver --cluster clo835 --service-account-role-arn arn:aws:iam::<_87656022586_>:role/LabRole --force`
+_87656022586_ should be updated with the relevent userid 
+```bash
+eksctl create addon --name aws-ebs-csi-driver --cluster clo835 --service-account-role-arn arn:aws:iam::<_87656022586_>:role/LabRole --force
+```
 
 ### 3. Create the new namespace 
-
-`kubectl create ns final`
-
+```bash
+kubectl create ns final
+```
 ### 4. serviceaccount and clusterrole creation + clusterrolebinding to the service account
 
 ```bash
 kubectl apply -f sa-clo835.yaml -n final
+```
+```bash
 kubectl apply -f clu-role.yaml -n final
+```
+```bash
 kubectl apply -f clu-role-bin.yaml -n final
 ```
 
@@ -45,12 +53,26 @@ kubectl apply -f clu-role-bin.yaml -n final
 
 ```bash
 kubectl apply -f db-secret.yaml -n final
+```
+```bash
 kubectl apply -f secrets.yaml -n final
+```
+```bash
 kubectl apply -f configMap-app.yaml -n final
+```
+```bash
 kubectl apply -f service-db.yaml -n final
+```
+```bash
 kubectl apply -f service-app.yaml -n final
+```
+```bash
 kubectl apply -f mysql-pvc.yaml -n final
+```
+```bash
 kubectl apply -f Deployment-db.yaml -n final
+```
+```bash
 kubectl apply -f Deployment-app.yaml -n final
 ```
 
@@ -66,17 +88,17 @@ k get apiservice v1beta1.metrics.k8s.io -o json | jq '.status'
 
 Deploy the Horizontal pod scaling manifest and run the busy box
 ```bash
-k apply -f hpa.yaml
+k apply -f hpa.yaml -n final
 k run -i --tty load-generator --image=busybox /bin/sh
 ```
-execute an infinity loop accessing the loadbalancer URL of the flask app to increase the cpu utilization
-
+Execute an infinity loop accessing the loadbalancer URL of the flask app to increase the cpu utilization.\
+Make sure to update the lodabalancer entrupoint in below command
 ```bash
-while true; do wget -q -O - http://ab42d3cb4c900419ca33f334261f7756-294325994.us-east-1.elb.amazonaws.com:81; done
+while true; do wget -q -O - http://<_LoadBalancerServiceURL_>; done
 ```
 On a separte terminal, monitor the scaling process.
 ```bash
-k get hpa -w
+k get hpa -n final -w
 ```
 
 
