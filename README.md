@@ -39,6 +39,7 @@ _87656022586_ should be updated with the relevent userid
 kubectl apply -f sa-clo835.yaml -n final
 kubectl apply -f clu-role.yaml -n final
 kubectl apply -f clu-role-bin.yaml -n final
+```
 
 ### 5. Deploy the manifests according to the above table
 
@@ -69,4 +70,4 @@ On a separte terminal, monitor the scaling process.
 k get hpa -w
 ```
 
-```
+
