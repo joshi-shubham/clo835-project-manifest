@@ -25,3 +25,10 @@ spec:
                 key: MYSQL_ROOT_PASSWORD
           ports:
           - containerPort: 3306
+          volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: mysql-data
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysql-data
