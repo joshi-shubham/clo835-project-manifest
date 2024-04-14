@@ -23,10 +23,10 @@ spec:
           envFrom:
             - secretRef:
                 name: mysql-secret
-          volumeMounts:
-          - mountPath: /var/lib/mysql
-            name: mysql-data
-      volumes:
-        - name: mysql-data
-          persistentVolumeClaim:
-            claimName: mysql-data
+      #     volumeMounts:
+      #     - mountPath: /var/lib/mysql
+      #       name: mysql-data
+      # volumes:
+      #   - name: mysql-data
+      #     persistentVolumeClaim:
+      #       claimName: mysql-data
