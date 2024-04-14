@@ -4,7 +4,7 @@ metadata:
   name: mysql-data
   namespace: final 
   annotations:
-    volume.beta.kubernetes.io/storage-class: gp2
+    StorageClass: gp2
 spec:
   accessModes:
   - ReadWriteOnce
